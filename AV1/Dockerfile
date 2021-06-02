@@ -15,6 +15,7 @@ RUN apt-get update
 
 RUN apt-get -y install g++ && \
     apt-get -y install build-essential && \
+    apt-get -y install lcov && \
     wget http://ftp.gnu.org/gnu/gcc/gcc-5.4.0/gcc-5.4.0.tar.gz && \
     tar zxvf gcc-5.4.0.tar.gz && \
     cd /home/jenkins/gcc-5.4.0 && \
@@ -41,4 +42,4 @@ RUN apt-get -y install g++ && \
     ./configure && \
     make && \
     make install && \
-	apt clean
+    apt clean
