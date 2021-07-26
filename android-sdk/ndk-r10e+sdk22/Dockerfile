@@ -9,7 +9,7 @@ ENV ANDROID_SDK_VERSION 22
 ENV ANDROID_SDK_TOOLS 22.0.1
 # Update apt-get & Install packages
 RUN apt update && \
-    apt install -y openjdk-8-jdk  bash wget unzip make file && \
+    apt install -y openjdk-8-jdk bash wget unzip make file libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 && \
 	apt clean
 
 # Export JAVA_HOME variable
