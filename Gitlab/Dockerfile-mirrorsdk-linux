@@ -1,0 +1,50 @@
+FROM ubuntu:20.04
+USER root
+ENV TZ Asia/Shanghai
+RUN apt update && \
+    apt install -y wget \ 
+    tzdata && \
+    /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo 'Asia/Shanghai' >/etc/timezone && \
+    apt install -y build-essential \
+    pkg-config \
+    git \
+    openssl \
+    libssl-dev \
+    g++ \
+    libglib2.0-dev && \
+    
+# install cmake 3.16.3    
+    wget https://cmake.org/files/v3.16/cmake-3.16.3.tar.gz && \
+    tar -zxvf cmake-3.16.3.tar.gz && \
+    cd cmake-3.16.3 && \
+    ./configure && \
+    make && \
+    make install && \
+    cmake --version && \
+    cd .. && \
+    rm cmake-3.16.3.tar.gz && \
+# install gstreamer
+    apt install -y libgstreamer1.0-0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav \
+    gstreamer1.0-doc \
+    gstreamer1.0-tools  \
+    gstreamer1.0-pulseaudio \
+    gstreamer1.0-x \
+    gstreamer1.0-alsa \
+    gstreamer1.0-gl \
+    gstreamer1.0-gtk3 \
+    gstreamer1.0-qt5 \
+    libgstreamer-plugins-base1.0-dev\
+    libgstrtspserver-1.0-dev && \
+    wget https://nchc.dl.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.24/libusb-1.0.24.tar.bz2 && \
+    tar -jxf libusb-1.0.24.tar.bz2 && \
+    cd libusb-1.0.24 && \
+    ./configure --build=x86_64-linux --disable-udev && \
+    make && \
+    make install
+
